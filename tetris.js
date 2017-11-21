@@ -66,6 +66,12 @@ function valid(offsetX, offsetY, newCurrent) {
   offsetY = currentY + offsetY;
   newCurrent = newCurrent || current;
   for (var y = 0; y < 4; ++y) {
+    for (var x = 0; x < 4; ++x) {
+      if (newCurrent[y][x]) {
+        if (typeof borad[y + offsetY] == 'undefined'
+            || )
+      }
+    }
 
   }
 }
