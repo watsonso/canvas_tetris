@@ -69,10 +69,30 @@ function valid(offsetX, offsetY, newCurrent) {
     for (var x = 0; x < 4; ++x) {
       if (newCurrent[y][x]) {
         if (typeof borad[y + offsetY] == 'undefined'
-            || )
+            || board[y + offsetY][x + offsetX]
+            || x + offsetX < 0
+            || y + offsetY >= ROWS
+            || x + offsetX >= COLS) {
+              if (offsetY == 1 && offsetX - currentX == 0 && offsetY - currentY == 1) {
+                console.log('game over');
+                lose = true;  
+              }
+              return false;
+            }
       }
     }
+  }
+  return true;
+}
 
+// block set board
+function freeze() {
+  for (var y = 0; y < 4; ++y) {
+    for (var x = 0; x < 4; ++x) {
+      if (current[y][x]) {
+        board[y + currentY][x + currentX] = current[y][x];
+      }
+    }
   }
 }
 
