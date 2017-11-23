@@ -96,6 +96,29 @@ function freeze() {
   }
 }
 
+// clearLines
+function clearLines() {
+  for (var y = ROWS - 1; y >= 0; --y) {
+    var rowFilled = true;
+    for (var x = 0; x < COLS; ++x) {
+      if (borad[y][x] == 0) {
+        rowFilled = false;
+        break;
+      }
+    }
+
+    if (rowFilled) {
+      document.getElementById('clearsound').play();
+      for (var yy = y; yy > 0; --yy) {
+        for (var x = 0; x < COLS; ++x) {
+          board[yy][x] = board[yy - 1][x];
+        }
+      }
+      ++y;
+    }
+  }
+}
+
 function tick() {
   // one down
   if (valid(0, 1)) {
