@@ -37,6 +37,45 @@ function init() {
   }
 }
 
+// function which push keyborad
+function keyPress(key) {
+  switch(key) {
+    case 'left':
+      if (valid(-1)) {
+        --currentX;
+      }
+      break;
+    case 'right':
+      if (valid(1)) {
+        ++currentX;
+      }
+      break;
+    case 'down':
+      if (valid(0, 1)) {
+        ++currentY;
+      }
+      break;
+    case 'rotate':
+      var rotated = rotate(current);
+      if (valid(0, 0, rotated)) {
+        current = rotated;
+      }
+      break;
+  }
+}
+
+// rotate bloack
+function rotate(current) {
+  var newCurrent = [];
+  for (var y = 0; y < 4; ++y;) {
+    newCurrent[y] = [];
+    for (var x = 0; x < 4; ++x) {
+      newCurrent[y][x] = current[3 - x][y];
+    }
+  }
+  return newCurrent;
+}
+
 // set the top of borad and random output block pattern from shapes
 function newShape() {
   var id = Math.floor(Math.random() * shapes.length);
